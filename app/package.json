@@ -1,11 +1,11 @@
 {
-  "name": "angular-electron",
-  "description": "Angular Electron sample",
+  "name": "nature-connect",
+  "version": "2.0.0",
+  "description": "Nature connect commissioning and configuration",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Ash Zhang",
+    "email": "ash.zhang@signify.com"
   },
-  "version": "11.1.0",
   "main": "main.js",
   "private": true,
   "dependencies": {
