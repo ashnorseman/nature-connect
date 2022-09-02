@@ -1,0 +1,114 @@
+<pho-tab-bar>
+  <pho-breadcrumb-list>
+    <pho-breadcrumb routerLink="/home">Home</pho-breadcrumb>
+    <pho-breadcrumb>Configure</pho-breadcrumb>
+  </pho-breadcrumb-list>
+
+  <pho-button icon="arrow-left"
+              routerLink="/home"></pho-button>
+</pho-tab-bar>
+
+<div class="page-content">
+  <div class="page-title"
+       [ngSwitch]="individualSelected">
+    <ng-container *ngSwitchCase="true">
+      <pho-text type="page-title">{{individualData.mac}}</pho-text>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="false">
+      <pho-text type="page-title">Configure selected</pho-text>
+
+      <pho-dropdown>
+        <pho-dropdown-option>
+          {{"shared_devices" | translate: { count: selectedControllers.length } }}
+        </pho-dropdown-option>
+      </pho-dropdown>
+    </ng-container>
+
+    <pho-button text="Manage content"
+                type="action"></pho-button>
+
+    <pho-button form="configure_form"
+                text="Save"
+                type="main-action"></pho-button>
+  </div>
+
+  <pho-form class="actions-form"
+            id="configure_form">
+    <div class="actions-form-column">
+      <pho-form-control>
+        <pho-label>Timezone</pho-label>
+        <pho-dropdown></pho-dropdown>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>Date</pho-label>
+        <pho-date-picker></pho-date-picker>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>Time</pho-label>
+        <pho-input-field type="time"></pho-input-field>
+        <pho-checkbox label="New York time"></pho-checkbox>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>NTP server 0</pho-label>
+        <pho-input-field></pho-input-field>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>NTP server 1</pho-label>
+        <pho-input-field></pho-input-field>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>NTP server 2</pho-label>
+        <pho-input-field></pho-input-field>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>Content package</pho-label>
+        <pho-dropdown></pho-dropdown>
+      </pho-form-control>
+    </div>
+
+    <div class="actions-form-column">
+      <pho-form-control>
+        <pho-label>IP address</pho-label>
+        <pho-input-field></pho-input-field>
+        <pho-checkbox label="DHCP"></pho-checkbox>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>Subnet mask</pho-label>
+        <pho-input-field></pho-input-field>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>Gateway</pho-label>
+        <pho-input-field></pho-input-field>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>DNS 0</pho-label>
+        <pho-input-field></pho-input-field>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>DNS 1</pho-label>
+        <pho-input-field></pho-input-field>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>Version</pho-label>
+        <pho-input-field></pho-input-field>
+      </pho-form-control>
+
+      <pho-form-control>
+        <pho-label>Password</pho-label>
+        <pho-password [icon]="false"></pho-password>
+      </pho-form-control>
+    </div>
+  </pho-form>
+</div>

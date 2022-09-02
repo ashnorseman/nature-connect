@@ -1,7 +1,41 @@
-<div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
+<div class="page-title">
+  <pho-text type="page-title">NC config tool</pho-text>
 
-  <a routerLink="/detail">{{ 'PAGES.HOME.GO_TO_DETAIL' | translate }}</a>
+  <pho-input-field action="search"
+                   placeholder="Search"></pho-input-field>
+
+  <pho-button routerLink="../actions/configure"
+              text="Configure"
+              type="neutral"
+              [disabled]="!selectedControllers.length"></pho-button>
+
+  <pho-button routerLink="../actions/update"
+              text="Update"
+              type="neutral"
+              [disabled]="!selectedControllers.length"></pho-button>
 </div>
+
+<pho-table indexKey="id"
+           selectable
+           [selected]="selectedControllers"
+           (clickRow)="selectIndividual($event)"
+           (selectRow)="selectShared($event)">
+  <pho-thead>
+    <pho-th property="name"
+            sortable>Name</pho-th>
+    <pho-th property="version"
+            sortable>Version</pho-th>
+    <pho-th property="mac"
+            sortable>Mac address</pho-th>
+    <pho-th property="ip"
+            sortable>IP address</pho-th>
+  </pho-thead>
+
+  <pho-tr *ngFor="let item of contentGroupControllers; let i = index"
+          [data]="item">
+    <pho-td>{{item.name}}</pho-td>
+    <pho-td>{{item.version}}</pho-td>
+    <pho-td>{{item.mac}}</pho-td>
+    <pho-td>{{item.ip}}</pho-td>
+  </pho-tr>
+</pho-table>

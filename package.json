@@ -1,25 +1,15 @@
 {
-  "name": "angular-electron",
-  "version": "11.1.0",
-  "description": "Angular 14 with Electron 19 (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "name": "nature-connect",
+  "version": "2.0.0",
+  "description": "Nature connect commissioning and configuration",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Ash Zhang",
+    "email": "ash.zhang@signify.com"
   },
   "keywords": [
     "angular",
-    "angular 14",
     "electron",
-    "electron 19",
-    "nodejs",
-    "typescript",
-    "playwright",
-    "eslint",
-    "sass",
-    "windows",
-    "mac",
-    "linux"
+    "typescript"
   ],
   "main": "app/main.js",
   "private": true,
@@ -53,6 +43,8 @@
     "@angular/platform-browser": "14.0.6",
     "@angular/platform-browser-dynamic": "14.0.6",
     "@angular/router": "14.0.6",
+    "@signify/photon": "0.2.4",
+    "ngx-translate-messageformat-compiler": "5.1.0",
     "rxjs": "7.5.6",
     "tslib": "^2.4.0",
     "zone.js": "~0.11.6"
