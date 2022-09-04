@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { FileSelector } from "@signify/photon";
 
-import { data } from "../store";
+import { StoreService } from "../core/services/store/store.service";
 import { ContentGroupController } from "../model/content-group-controller";
 
 @Component({
@@ -10,21 +11,28 @@ import { ContentGroupController } from "../model/content-group-controller";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent {
-  public contentGroupControllers = data.contentGroupControllers;
+  constructor(
+    private readonly router: Router,
+    public readonly store: StoreService
+  ) {}
 
-  constructor(private readonly router: Router) {}
+  public importData(event: Event) {
+    const file = event.target as FileSelector;
 
-  public get selectedControllers() {
-    return data.selectedControllers;
+    file.value.text().then((result: string) => {
+      const cgc = JSON.parse(result);
+
+      this.store.saveData(cgc);
+    });
   }
 
   public selectIndividual(event: Event) {
-    data.selectedControllers = [(event as CustomEvent<ContentGroupController>).detail.id];
+    this.store.selectedControllers$.next([(event as CustomEvent<ContentGroupController>).detail.id]);
 
     this.router.navigate(["/actions/configure"]).then();
   }
 
   public selectShared(event: Event) {
-    data.selectedControllers = (event as CustomEvent<number[]>).detail;
+    this.store.selectedControllers$.next((event as CustomEvent<number[]>).detail);
   }
 }

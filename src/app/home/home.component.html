@@ -7,17 +7,23 @@
   <pho-button routerLink="../actions/configure"
               text="Configure"
               type="neutral"
-              [disabled]="!selectedControllers.length"></pho-button>
+              [disabled]="!(store.selectedControllers$ | async)?.length"></pho-button>
 
   <pho-button routerLink="../actions/update"
               text="Update"
               type="neutral"
-              [disabled]="!selectedControllers.length"></pho-button>
+              [disabled]="!(store.selectedControllers$ | async)?.length"></pho-button>
+
+  <pho-file accetp="json"
+            icon="import"
+            text="Import"
+            type="neutral"
+            (input)="importData($event)"></pho-file>
 </div>
 
 <pho-table indexKey="id"
            selectable
-           [selected]="selectedControllers"
+           [selected]="store.selectedControllers$ | async"
            (clickRow)="selectIndividual($event)"
            (selectRow)="selectShared($event)">
   <pho-thead>
@@ -31,7 +37,7 @@
             sortable>IP address</pho-th>
   </pho-thead>
 
-  <pho-tr *ngFor="let item of contentGroupControllers; let i = index"
+  <pho-tr *ngFor="let item of (store.contentGroupControllers$ | async); let i = index"
           [data]="item">
     <pho-td>{{item.name}}</pho-td>
     <pho-td>{{item.version}}</pho-td>

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
-import { data } from "../../store";
-import {ContentGroupController} from "../../model/content-group-controller";
+import { ContentGroupController } from "../../model/content-group-controller";
+import { StoreService } from "../../core/services/store/store.service";
 
 @Component({
   selector: "app-action-configure",
@@ -9,21 +9,20 @@ import {ContentGroupController} from "../../model/content-group-controller";
   styleUrls: ["./action-configure.component.scss"]
 })
 export class ActionConfigureComponent {
-
-  public get selectedControllers() {
-    return data.selectedControllers;
-  }
+  constructor(
+    public readonly store: StoreService
+  ) {}
 
   public get individualData(): ContentGroupController | null {
     if (!this.individualSelected) {
       return null;
     }
 
-    return data.contentGroupControllers
-      .find(c => c.id === this.selectedControllers[0]) || null;
+    return this.store.contentGroupControllers$.value
+      .find(c => c.id === this.store.selectedControllers$.value[0]) || null;
   }
 
   public get individualSelected(): boolean {
-    return this.selectedControllers.length === 1;
+    return this.store.selectedControllers$.value.length === 1;
   }
 }

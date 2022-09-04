@@ -1,4 +1,4 @@
-import {app, BrowserWindow, screen} from 'electron';
+import { BrowserWindow, app, ipcMain, screen } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -21,6 +21,28 @@ function createWindow(): BrowserWindow {
       allowRunningInsecureContent: (serve),
       contextIsolation: false,  // false if you want to run e2e test with Spectron
     },
+  });
+
+  ipcMain.handle('loadData', async (event, fileName) => {
+    const userDataPath = app.getPath("userData");
+
+    this.path = path.join(userDataPath, `${fileName}.json`);
+
+    fs.writeFileSync(this.path, '', { flag: 'a' });
+
+    const data = fs.readFileSync(this.path, "utf8");
+
+    return data.length > 0 ? JSON.parse(data) : null;
+  });
+
+  ipcMain.handle('saveData', async (event, fileName, data) => {
+    const userDataPath = app.getPath('userData');
+
+    this.path = path.join(userDataPath, `${fileName}.json`);
+
+    fs.writeFileSync(this.path, JSON.stringify(data));
+
+    return 'OK';
   });
 
   if (serve) {

@@ -22,11 +22,19 @@ module.exports = (config, options) => {
     }
 
     config.plugins = [
-        ...config.plugins,
-        new NodePolyfillPlugin({
-			  excludeAliases: ["console"]
-		})
+      ...config.plugins,
+      new NodePolyfillPlugin({
+        excludeAliases: ["console"]
+		  })
     ];
+
+    config.resolve = {
+      ...config.resolve,
+      fallback: {
+        ...config.fallback,
+        fs: false,
+      },
+    };
 
     return config;
 }

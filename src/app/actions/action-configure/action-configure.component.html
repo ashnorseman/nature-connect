@@ -20,7 +20,7 @@
 
       <pho-dropdown>
         <pho-dropdown-option>
-          {{"shared_devices" | translate: { count: selectedControllers.length } }}
+          {{"shared_devices" | translate: { count: (store.selectedControllers$ | async)?.length } }}
         </pho-dropdown-option>
       </pho-dropdown>
     </ng-container>

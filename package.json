@@ -13,6 +13,13 @@
   ],
   "main": "app/main.js",
   "private": true,
+  "browser": {
+    "fs": false,
+    "net": false,
+    "path": false,
+    "os": false,
+    "tls": false
+  },
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "ng": "ng",
@@ -44,6 +51,7 @@
     "@angular/platform-browser-dynamic": "14.0.6",
     "@angular/router": "14.0.6",
     "@signify/photon": "0.2.4",
+    "electron-store": "8.1.0",
     "ngx-translate-messageformat-compiler": "5.1.0",
     "rxjs": "7.5.6",
     "tslib": "^2.4.0",
