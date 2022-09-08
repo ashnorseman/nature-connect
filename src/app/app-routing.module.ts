@@ -3,26 +3,30 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { PageNotFoundComponent } from "./shared/components";
 import { HomeRoutingModule } from "./home/home-routing.module";
-import { ActionsRoutingModule } from "./actions/actions-routing.module";
+import { ConfigureRoutingModule } from "./configure/configure-routing.module";
+import {
+  SelectDeviceRoutingModule,
+} from "./select-device/select-device-routing.module";
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "home",
-    pathMatch: "full"
+    redirectTo: "select",
+    pathMatch: "full",
   },
   {
     path: "**",
-    component: PageNotFoundComponent
-  }
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" }),
     HomeRoutingModule,
-    ActionsRoutingModule,
+    SelectDeviceRoutingModule,
+    ConfigureRoutingModule,
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

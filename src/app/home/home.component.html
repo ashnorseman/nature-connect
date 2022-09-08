@@ -13,15 +13,9 @@
               text="Update"
               type="neutral"
               [disabled]="!(store.selectedControllers$ | async)?.length"></pho-button>
-
-  <pho-file accetp="json"
-            icon="import"
-            text="Import"
-            type="neutral"
-            (input)="importData($event)"></pho-file>
 </div>
 
-<pho-table indexKey="id"
+<pho-table indexKey="ip"
            selectable
            [selected]="store.selectedControllers$ | async"
            (clickRow)="selectIndividual($event)"

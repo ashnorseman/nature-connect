@@ -1,0 +1,169 @@
+<pho-tab-bar>
+  <pho-breadcrumb-list>
+    <pho-breadcrumb routerLink="/">Select device</pho-breadcrumb>
+    <pho-breadcrumb>Device configuration</pho-breadcrumb>
+  </pho-breadcrumb-list>
+
+  <pho-button icon="arrow-left"
+              routerLink="/"></pho-button>
+</pho-tab-bar>
+
+<div class="page-content">
+  <div class="page-title">
+    <pho-text type="page-title">{{(current$ | async)?.ip}}</pho-text>
+
+    <pho-button icon="refresh"
+                routerLink="update"
+                text="Update"
+                type="neutral"></pho-button>
+
+    <pho-button icon="upload"
+                routerLink="content"
+                text="Manage content"
+                type="neutral"></pho-button>
+
+    <pho-button icon="checkmark"
+                form="configure-form"
+                text="Save"
+                type="main-action"
+                [disabled]="configureForm.pristine || configureForm.invalid"></pho-button>
+  </div>
+
+  <form #configureForm="ngForm">
+    <pho-form id="configure-form"
+              class="configure-form">
+      <div class="configure-form-column">
+        <pho-form-control>
+          <pho-label>Timezone</pho-label>
+          <pho-dropdown appFormControl
+                        name="timezone"
+                        ngModel
+                        [value]="(current$ | async).timezone">
+            <pho-dropdown-option value="Asia/Shanghai">Asia/Shanghai</pho-dropdown-option>
+          </pho-dropdown>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>Date</pho-label>
+          <pho-date-picker appFormControl
+                           icon
+                           name="date"
+                           ngModel
+                           [value]="(current$ | async).date"></pho-date-picker>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>Time</pho-label>
+          <pho-input-field appFormControl
+                           icon="clock"
+                           name="time"
+                           ngModel
+                           type="time"
+                           [value]="(current$ | async).time"></pho-input-field>
+          <pho-checkbox appFormControl
+                        label="New York time"
+                        name="isNewYorkTime"
+                        ngModel
+                        [checked]="(current$ | async).isNewYorkTime"></pho-checkbox>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>NTP server 0</pho-label>
+          <pho-input-field appFormControl
+                           name="ntp0"
+                           ngModel
+                           [value]="(current$ | async).ntp0"></pho-input-field>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>NTP server 1</pho-label>
+          <pho-input-field appFormControl
+                           name="ntp1"
+                           ngModel
+                           [value]="(current$ | async).ntp1"></pho-input-field>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>NTP server 2</pho-label>
+          <pho-input-field appFormControl
+                           name="ntp2"
+                           ngModel
+                           [value]="(current$ | async).ntp2"></pho-input-field>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>Content package</pho-label>
+          <pho-dropdown appFormControl
+                        name="contentPackage"
+                        ngModel
+                        [value]="(current$ | async).contentPackage">
+            <pho-dropdown-option value="0.9.0">v0.9.0</pho-dropdown-option>
+          </pho-dropdown>
+        </pho-form-control>
+      </div>
+
+      <div class="configure-form-column">
+        <pho-form-control>
+          <pho-label>IP address</pho-label>
+          <pho-input-field appFormControl
+                           name="ip"
+                           ngModel
+                           [value]="(current$ | async).ip"></pho-input-field>
+          <pho-checkbox appFormControl
+                        label="DHCP"
+                        name="isDhcp"
+                        ngModel
+                        [checked]="(current$ | async).isDhcp"></pho-checkbox>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>Subnet mask</pho-label>
+          <pho-input-field appFormControl
+                           name="subnetMask"
+                           ngModel
+                           [value]="(current$ | async).subnetMask"></pho-input-field>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>Gateway</pho-label>
+          <pho-input-field appFormControl
+                           name="gateway"
+                           ngModel
+                           [value]="(current$ | async).gateway"></pho-input-field>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>DNS 0</pho-label>
+          <pho-input-field appFormControl
+                           name="dns0"
+                           ngModel
+                           [value]="(current$ | async).dns0"></pho-input-field>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>DNS 1</pho-label>
+          <pho-input-field appFormControl
+                           name="dns1"
+                           ngModel
+                           [value]="(current$ | async).dns1"></pho-input-field>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>Version</pho-label>
+          <pho-input-field appFormControl
+                           name="version"
+                           ngModel
+                           [value]="(current$ | async).version"></pho-input-field>
+        </pho-form-control>
+
+        <pho-form-control>
+          <pho-label>Password</pho-label>
+          <pho-password appFormControl
+                        name="password"
+                        ngModel
+                        [value]="(current$ | async).password"></pho-password>
+        </pho-form-control>
+      </div>
+    </pho-form>
+  </form>
+</div>

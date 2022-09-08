@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@signify/photon/lib/styles/themes/signify-light.css";
-@import "~@signify/photon/lib/styles/sizes/touch-hybrid.css";
+@import "~@signify/photon/lib/styles/sizes/pointer.css";
 @import "~@signify/photon/lib/styles/index.css";
 
 body {
@@ -27,13 +27,28 @@ body {
   padding: var(--photon-side-margin);
 }
 
-.actions-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: var(--photon-side-margin);
+.center-form {
+  background: var(--photon-semantic-surface);
+  max-width: 100%;
+  margin: 100px auto 0;
+  padding: var(--photon-side-margin);
+  width: 400px;
 }
 
-.actions-form-column {
-  background: var(--photon-semantic-surface);
-  padding: var(--photon-side-margin);
+.center-form-submit {
+  width: 100%;
+}
+
+.form-message {
+  margin-bottom: 24px;
+}
+
+.update-message {
+  margin: 24px 0;
+}
+
+.update-progress {
+  display: flex;
+  align-items: center;
+  grid-gap: 16px;
 }

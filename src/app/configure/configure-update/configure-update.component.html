@@ -1,0 +1,47 @@
+<pho-tab-bar>
+  <pho-breadcrumb-list>
+    <pho-breadcrumb routerLink="/">Select device</pho-breadcrumb>
+    <pho-breadcrumb routerLink="../">{{(current$ | async)?.ip}}</pho-breadcrumb>
+    <pho-breadcrumb>Update</pho-breadcrumb>
+  </pho-breadcrumb-list>
+
+  <pho-button icon="arrow-left"
+              routerLink="../"></pho-button>
+</pho-tab-bar>
+
+<pho-form class="center-form">
+  <pho-text class="page-title"
+            type="page-title">Update
+  </pho-text>
+
+  <pho-contextual-message class="form-message">
+    Notice: Blah Blah Blah
+  </pho-contextual-message>
+
+  <pho-form-control>
+    <pho-label required>Firmware</pho-label>
+    <pho-file #fileSelector
+              [disabled]="uploading$ | async"
+              text="Browse"></pho-file>
+  </pho-form-control>
+
+  <div *ngIf="uploading$ | async"
+       class="update-message">
+    <pho-text>Firmware updating…</pho-text>
+
+    <div class="update-progress">
+      <pho-progress-indicator shape="linear"></pho-progress-indicator>
+
+      <pho-button icon="cross"
+                  (click)="cancelUpload()"></pho-button>
+    </div>
+  </div>
+
+  <pho-form-submit>
+    <pho-button class="center-form-submit"
+                text="Update"
+                type="main-action"
+                [disabled]="!fileSelector.value || (uploading$ | async)"
+                (click)="startUpload()"></pho-button>
+  </pho-form-submit>
+</pho-form>

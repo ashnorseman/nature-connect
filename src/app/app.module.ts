@@ -6,10 +6,11 @@ import { TranslateCompiler, TranslateLoader, TranslateModule } from "@ngx-transl
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateMessageFormatCompiler } from "ngx-translate-messageformat-compiler";
 
-import { ActionsModule } from "./actions/actions.module";
+import { ConfigureModule } from "./configure/configure.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { CoreModule } from "./core/core.module";
 import { HomeModule } from "./home/home.module";
+import { SelectDeviceModule } from "./select-device/select-device.module";
 import { SharedModule } from "./shared/shared.module";
 
 import { AppComponent } from "./app.component";
@@ -25,8 +26,9 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
     HttpClientModule,
     CoreModule,
     SharedModule,
+    SelectDeviceModule,
     HomeModule,
-    ActionsModule,
+    ConfigureModule,
     AppRoutingModule,
     TranslateModule.forRoot({
       compiler: {

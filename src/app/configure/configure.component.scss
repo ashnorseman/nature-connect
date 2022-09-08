@@ -1,0 +1,10 @@
+.configure-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: var(--photon-side-margin);
+}
+
+.configure-form-column {
+  background: var(--photon-semantic-surface);
+  padding: var(--photon-side-margin);
+}

@@ -1,0 +1,65 @@
+<pho-tab-bar>
+  <pho-breadcrumb-list>
+    <pho-breadcrumb routerLink="/">Select device</pho-breadcrumb>
+    <pho-breadcrumb routerLink="../">{{(current$ | async)?.ip}}</pho-breadcrumb>
+    <pho-breadcrumb>Manage content</pho-breadcrumb>
+  </pho-breadcrumb-list>
+
+  <pho-button icon="arrow-left"
+              routerLink="../"></pho-button>
+</pho-tab-bar>
+
+<pho-form class="center-form">
+  <pho-text class="page-title"
+            type="page-title">Manage content
+  </pho-text>
+
+  <pho-contextual-message class="form-message">
+    Notice: Blah Blah Blah
+  </pho-contextual-message>
+
+  <pho-form-control>
+    <pho-label required>Content package</pho-label>
+    <pho-file #fileSelector
+              [disabled]="uploading$ | async"
+              text="Browse"></pho-file>
+  </pho-form-control>
+
+  <div *ngIf="uploading$ | async"
+       class="update-message">
+    <pho-text>Content package uploading…</pho-text>
+
+    <div class="update-progress">
+      <pho-progress-indicator shape="linear"></pho-progress-indicator>
+
+      <pho-button icon="cross"
+                  (click)="cancelUpload()"></pho-button>
+    </div>
+  </div>
+
+  <pho-form-submit>
+    <pho-button class="center-form-submit"
+                text="Upload"
+                type="main-action"
+                [disabled]="!fileSelector.value || (uploading$ | async)"
+                (click)="startUpload()"></pho-button>
+  </pho-form-submit>
+
+  <hr class="content-sep">
+
+  <pho-list-header>Uploaded content packages</pho-list-header>
+
+  <pho-list-item multiline>
+    <span slot="label">Name - v0.9.0</span>
+    <span slot="sub-label">Description</span>
+    <pho-button slot="control"
+                icon="trash-bin"></pho-button>
+  </pho-list-item>
+
+  <pho-list-item multiline>
+    <span slot="label">Name - v0.8.0</span>
+    <span slot="sub-label">Description</span>
+    <pho-button slot="control"
+                icon="trash-bin"></pho-button>
+  </pho-list-item>
+</pho-form>

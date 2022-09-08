@@ -50,7 +50,7 @@
     "@angular/platform-browser": "14.0.6",
     "@angular/platform-browser-dynamic": "14.0.6",
     "@angular/router": "14.0.6",
-    "@signify/photon": "0.2.4",
+    "@signify/photon": "0.2.6",
     "electron-store": "8.1.0",
     "ngx-translate-messageformat-compiler": "5.1.0",
     "rxjs": "7.5.6",
