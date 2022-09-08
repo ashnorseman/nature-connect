@@ -43,6 +43,10 @@ body {
   margin-bottom: 24px;
 }
 
+.form-static {
+  line-height: var(--photon-control-height);
+}
+
 .update-message {
   margin: 24px 0;
 }

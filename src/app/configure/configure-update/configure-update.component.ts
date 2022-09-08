@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
+import axios from "axios";
 
 import { StoreService } from "../../core/services/store/store.service";
 
@@ -23,7 +24,13 @@ export class ConfigureUpdateComponent {
     this.uploading$.next(false);
   }
 
-  public startUpload() {
+  public startUpload(file: File) {
+    const formData = new FormData();
+
+    formData.set("file", file);
+
+    axios.post("/luafirmware", formData).then();
+
     this.uploading$.next(true);
   }
 }

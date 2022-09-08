@@ -42,6 +42,6 @@
                 text="Update"
                 type="main-action"
                 [disabled]="!fileSelector.value || (uploading$ | async)"
-                (click)="startUpload()"></pho-button>
+                (click)="startUpload(fileSelector.value)"></pho-button>
   </pho-form-submit>
 </pho-form>

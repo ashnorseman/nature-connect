@@ -2,6 +2,7 @@ import { Component, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 
 import { StoreService } from "../core/services/store/store.service";
+import { timezoneDatabase } from "../core/services/store/timezone-database";
 
 @Component({
   selector: "app-configure",
@@ -11,6 +12,8 @@ import { StoreService } from "../core/services/store/store.service";
 export class ConfigureComponent {
   @ViewChild("configureForm")
   public configureForm: NgForm;
+
+  public timezoneDatabase = timezoneDatabase;
 
   constructor(
     public readonly store: StoreService

@@ -51,6 +51,7 @@
     "@angular/platform-browser-dynamic": "14.0.6",
     "@angular/router": "14.0.6",
     "@signify/photon": "0.2.6",
+    "axios": "0.27.2",
     "electron-store": "8.1.0",
     "ngx-translate-messageformat-compiler": "5.1.0",
     "rxjs": "7.5.6",

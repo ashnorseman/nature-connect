@@ -1,3 +1,18 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+export interface ContentGroupRes {
+
+  // e.g.
+  // 0.openwrt.pool.ntp.org 1.openwrt.pool.ntp.org 2.openwrt.pool.ntp.org 3.openwrt.pool.ntp.org
+  DEVNTP?: string;
+
+  // e.g. 20220908 07:24
+  DEVTIME?: string;
+
+  DEVZONE?: string;
+  FWVERSION?: string;
+  IPCFG?: string;
+}
+
 export class ContentGroupController {
   public contentPackage: string;
   public date: string;
@@ -18,7 +33,35 @@ export class ContentGroupController {
   public timezone: string;
   public version: string;
 
-  constructor(data?: Partial<ContentGroupController>) {
-    Object.assign(this, data ?? {});
+  constructor(data: ContentGroupRes = {}) {
+    Object.getOwnPropertyNames(data)
+      .forEach(key => {
+        if (typeof data[key] === "string") {
+          data[key] = data[key].trim();
+        }
+      });
+
+    if (data.DEVNTP) {
+      const ntp: string[] = data.DEVNTP
+        .split(" ")
+        .map(value => value.replace(/\d\./, ""));
+
+      this.ntp0 = ntp[0] || "";
+      this.ntp1 = ntp[1] || "";
+      this.ntp2 = ntp[2] || "";
+    }
+
+    if (data.DEVTIME) {
+      this.date = data.DEVTIME
+        .replace(/^(\d{4})(\d{2})(\d{2})/, (_, y, m, d) => {
+          return `${y}/${m}/${d}`;
+        });
+
+      this.time = data.DEVTIME.split(" ")[1];
+    }
+
+    this.ip = data.IPCFG;
+    this.timezone = data.DEVZONE;
+    this.version = data.FWVERSION;
   }
 }

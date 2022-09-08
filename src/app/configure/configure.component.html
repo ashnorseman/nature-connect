@@ -39,7 +39,9 @@
                         name="timezone"
                         ngModel
                         [value]="(current$ | async).timezone">
-            <pho-dropdown-option value="Asia/Shanghai">Asia/Shanghai</pho-dropdown-option>
+            <pho-dropdown-option *ngFor="let item of timezoneDatabase"
+                                 [value]="item.value">{{item.name}}
+            </pho-dropdown-option>
           </pho-dropdown>
         </pho-form-control>
 
@@ -105,11 +107,9 @@
       <div class="configure-form-column">
         <pho-form-control>
           <pho-label>IP address</pho-label>
-          <pho-input-field appFormControl
-                           name="ip"
-                           ngModel
-                           [value]="(current$ | async).ip"></pho-input-field>
+          <div class="form-static">{{(current$ | async).ip}}</div>
           <pho-checkbox appFormControl
+                        disabled
                         label="DHCP"
                         name="isDhcp"
                         ngModel
@@ -118,42 +118,27 @@
 
         <pho-form-control>
           <pho-label>Subnet mask</pho-label>
-          <pho-input-field appFormControl
-                           name="subnetMask"
-                           ngModel
-                           [value]="(current$ | async).subnetMask"></pho-input-field>
+          <div class="form-static">{{(current$ | async).subnetMask}}</div>
         </pho-form-control>
 
         <pho-form-control>
           <pho-label>Gateway</pho-label>
-          <pho-input-field appFormControl
-                           name="gateway"
-                           ngModel
-                           [value]="(current$ | async).gateway"></pho-input-field>
+          <div class="form-static">{{(current$ | async).gateway}}</div>
         </pho-form-control>
 
         <pho-form-control>
           <pho-label>DNS 0</pho-label>
-          <pho-input-field appFormControl
-                           name="dns0"
-                           ngModel
-                           [value]="(current$ | async).dns0"></pho-input-field>
+          <div class="form-static">{{(current$ | async).dns0}}</div>
         </pho-form-control>
 
         <pho-form-control>
           <pho-label>DNS 1</pho-label>
-          <pho-input-field appFormControl
-                           name="dns1"
-                           ngModel
-                           [value]="(current$ | async).dns1"></pho-input-field>
+          <div class="form-static">{{(current$ | async).dns1}}</div>
         </pho-form-control>
 
         <pho-form-control>
           <pho-label>Version</pho-label>
-          <pho-input-field appFormControl
-                           name="version"
-                           ngModel
-                           [value]="(current$ | async).version"></pho-input-field>
+          <div class="form-static">{{(current$ | async).version}}</div>
         </pho-form-control>
 
         <pho-form-control>

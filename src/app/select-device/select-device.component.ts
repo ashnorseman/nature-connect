@@ -1,8 +1,12 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import axios from "axios";
 
 import { StoreService } from "../core/services/store/store.service";
-import { ContentGroupController } from "../model/content-group-controller";
+import {
+  ContentGroupController,
+  ContentGroupRes,
+} from "../model/content-group-controller";
 
 @Component({
   selector: "app-select-device",
@@ -10,13 +14,20 @@ import { ContentGroupController } from "../model/content-group-controller";
   styleUrls: ["./select-device.component.scss"],
 })
 export class SelectDeviceComponent {
-  constructor (
+  constructor(
     private readonly router: Router,
     private readonly store: StoreService,
   ) {}
 
   public selectDevice(data: Partial<ContentGroupController>) {
-    this.store.setCurrent(data);
-    this.router.navigate(["/configure"]).then();
+    axios.get<ContentGroupRes>("/luadevstatus", {
+      params: data,
+    })
+      .then(res => {
+        this.store.setCurrent(new ContentGroupController(res.data));
+        this.router
+          .navigate(["/configure"])
+          .then();
+      });
   }
 }

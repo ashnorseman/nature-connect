@@ -55,15 +55,19 @@ export class ElectronService {
   }
 
   public loadData(jsonFileName: string): Promise<unknown> {
-    if (!this.ipcRenderer) {
-      return new Promise((_, reject) => reject("No loader found"));
-    }
+    return new Promise((_, reject) => reject("No loader found"));
 
-    return this.ipcRenderer.invoke("loadData", jsonFileName)
-      .catch(error => alert(error));
+    // if (!this.ipcRenderer) {
+    //   return new Promise((_, reject) => reject("No loader found"));
+    // }
+    //
+    // return this.ipcRenderer.invoke("loadData", jsonFileName)
+    //   .catch(error => alert(error));
   }
 
   public saveData(jsonFileName: string, data: any): Promise<unknown> {
-    return this.ipcRenderer.invoke("saveData", jsonFileName, data);
+    return new Promise((_, reject) => reject("No loader found"));
+
+    // return this.ipcRenderer.invoke("saveData", jsonFileName, data);
   }
 }
